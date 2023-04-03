@@ -15,12 +15,22 @@ const generateTable = () => {
     }
     if(rowsNumber>0 && columnsNumber>0){
         tableExists = true
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'the fields are empty!',
+        });
     }
 }
 
 const ExportToExcel = (type, fn, dl) => {
     if(!tableExists){
-        return
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'there is no generated table to be exported!',
+        });
     }
     var elt = table
     var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" })
